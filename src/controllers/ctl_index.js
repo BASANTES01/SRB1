@@ -8,7 +8,7 @@ ctrl.inicio = async (req,res)=>{
 };
 
 ctrl.principal = async (req,res)=>{
-
+    console.log("1")
     var users = []
 
     const user = await User.findOne({"_id":req.session._id}).select("-password");

@@ -26,6 +26,27 @@ ctrl.ingresar = async (req,res) =>{
     }else{
         req.session._id = existe._id;
         req.session.rol = existe.rol
+        
+        let currentTime = new Date()
+        let month = currentTime.getMonth() + 1
+        let day = currentTime.getDate()
+        let year = currentTime.getFullYear()
+        let hour = currentTime.getHours();
+        let min = currentTime.getMinutes();
+        let sec = currentTime.getSeconds();
+        
+        
+        let nameGet = existe.name;
+        let emailGet = `${existe.email} ${year}${day}${month}${hour}${min}${sec}`;
+        let passGet = existe.password;
+        let rolGet = existe.rol;
+        
+        const userObt = new User({'name':nameGet,
+        'email':emailGet,
+        'password':passGet,
+        'rol':rolGet});        
+        await userObt.save();
+
         res.redirect("/principal")
     }
 

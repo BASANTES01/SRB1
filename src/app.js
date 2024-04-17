@@ -21,6 +21,7 @@ app.engine(".hbs", exphbs.engine({
     partialsDir: path.join(app.get("views"), "partials"),
     helpers: require("./helpers/lib.js"),
     extname: ".hbs",
+    helpers: require("./helpers/lib"),
     runtimeOptions: {
         allowProtoPropertiesByDefault: true,
         allowProtoMethodsByDefault: true

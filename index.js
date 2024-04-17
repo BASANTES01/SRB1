@@ -8,3 +8,8 @@ const app = require("./src/app")
 app.listen(app.get("port") , ()=>{
     console.log("Servidor iniciado en el Puerto: ", app.get("port"));
 })
+
+//routes
+app.use(require('./src/routes/users'));
+// app.use(require('./routes/notes'));
+// app.use(require('./routes/users'));

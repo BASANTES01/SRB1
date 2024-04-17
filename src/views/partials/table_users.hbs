@@ -1,45 +1,49 @@
 <!-- DATATABLES -->
 <script src="/js/table_users.js"></script>
-<table id="myTable" class="table-responsive display table table-hover">
-    <thead>
-        <tr>
-            <th>Email</th>
-            <th>Nombre</th>
-            <th>Fecha</th>
-            <th>Opciones</th>
-             
-        </tr>
-    </thead>
-    <tbody>
-        {{#each users}}
-        <tr>
-            <td>{{email}}</td>
-            <td>{{name}}</td>
-            <td>
-                <script>
-                    var fechaRegistro = new Date("{{this.createdAt}}");
-                    var dia = fechaRegistro.getDate();
-                    var mes = fechaRegistro.getMonth() + 1;
-                    var año = fechaRegistro.getFullYear();
-                    var horas = fechaRegistro.getHours();
-                    var minutos = fechaRegistro.getMinutes();
+<div class="table-responsive" style="background-color: #6f006668;color: #eeeeee;">
+    <table id="myTable" class="table table-hover" style="color: #ffffff;">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Nombre</th>
+                <th>Fecha</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each users}}
+            <tr>
+                <td>{{email}}</td>
+                <td>{{name}}</td>
+                <td>
+                    <script>
+                        var fechaRegistro = new Date("{{this.createdAt}}");
+                        var dia = fechaRegistro.getDate();
+                        var mes = fechaRegistro.getMonth() + 1;
+                        var año = fechaRegistro.getFullYear();
+                        var horas = fechaRegistro.getHours();
+                        var minutos = fechaRegistro.getMinutes();
 
-                    var fechaHoraFormateada = `${dia}/${mes}/${año} - ${horas}:${minutos}`;
-                    document.currentScript.parentElement.innerHTML = fechaHoraFormateada;
-                </script>
-               </td>
-                 <td>
-                
-                <button class="btn btn-danger" onclick="deleteSession('{{_id}}')"><i class="fas fa-trash"></i></button>
-               <button class="btn btn-warning" onclick="editUser('{{userId}}')">Editar</button>
-            
-            </td>
-            
-        </tr>
-        {{/each}}
-           
-    </tbody>
-</table>
+                        var fechaHoraFormateada = `${dia}/${mes}/${año} - ${horas}:${minutos}`;
+                        document.currentScript.parentElement.innerHTML = fechaHoraFormateada;
+                    </script>
+                </td>
+                <td>                
+                    <form action="/users/delete-users/{{_id}}?_method=DELETE" method="POST">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button class="btn btn-danger" type="submit">
+                            <i class="fas fa-trash"></i> Eliminar Sesión
+                        </button>
+                    </form>
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="/users/edit/{{_id}}">Editar</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
 </div>
 
 <script>
@@ -64,29 +68,9 @@
         function editUser(userId) {
           window.location.href = '/edit/' + userId;
 
-        }   
+        }  
 
-    function deleteSession(userId) {
-        if (confirm('¿Estás seguro de que deseas eliminar esta sesión?')) {
-            fetch(`/delete/${userId}`, {
-                method: 'DELETE',
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    window.location.reload(); 
-                } else {
-                    alert('Hubo un error al intentar eliminar la sesión.');
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                alert('Error al eliminar la sesión');
-            });
-        }
-    }
-</script>
-
+</script>        
 
 
 
