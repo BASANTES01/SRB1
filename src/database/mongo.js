@@ -4,11 +4,11 @@ const MongoStore = require('connect-mongo');
 const app = express();
 
 app.use(session({
-    secret: 'tu_secreto_aqui',
+    secret: 'jeremybasantes',
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({ 
-        mongoUrl: 'mongodb+srv://jeremybasantes3:1234@cluster0.juchyqr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
+        mongoUrl: 'mmongmongosh "mongodb+srv://cluster0.juchyqr.mongodb.net/" --apiVersion 1 --username <username>odb+srv://jeremybasantes:12345@cluster0.juchyqr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0ngodb+srv://jeremybasantes3:1234@cluster0.juchyqr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
         
     })
 }));
