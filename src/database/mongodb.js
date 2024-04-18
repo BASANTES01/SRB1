@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const uri="mongodb+srv://jeremybasantes3:1234@cluster0.juchyqr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
 //CONEXION A MONGODB
 const URI = process.env.MONGOURICLOUD;
 mongoose.connect(URI)
