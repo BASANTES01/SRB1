@@ -1,10 +1,14 @@
+require('dotenv').config(); // Asegúrate de que esto está al principio de tu archivo principal
+
 const mongoose = require('mongoose');
 
-//CONEXION A MONGODB
-const URI = process.env.MONGOURICLOUD;
-mongoose.connect(URI)
-  .then(() => console.log('¡Mongodb - Conectado!'))
-  .catch(err => console.error("Mongodb - Error al conectarse: ",err));
+// Asumiendo que utilizas una variable de entorno llamada MONGO_URI
+const mongoURI = process.env.MONGO_URI;
 
-//EXPORTANDO MODULO MONGOOSE
-module.exports = mongoose;
+if (!mongoURI) {
+    console.error('La URI de MongoDB no está definida en las variables de entorno');
+} else {
+    mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+        .then(() => console.log('MongoDB conectado exitosamente'))
+        .catch(err => console.error('Error al conectar con MongoDB', err));
+}
