@@ -7,12 +7,13 @@
                 <th>Email</th>
                 <th>Nombre</th>
                 <th>Fecha</th>
-            
+                {{#if (val_rol session.rol)}}
                 <th>Editar</th>
-           
-                
+                {{#if (val_rol session.rol)}}
                 <th>Eliminar</th>
-                 
+                {{#if (val_rol session.rol)}}
+                 {{/if}} 
+
             </tr>
         </thead>
               
@@ -35,7 +36,7 @@
                         document.currentScript.parentElement.innerHTML = fechaHoraFormateada;
                     </script>
                 </td>
-                
+                {{#if (val_rol ../session.rol)}}
                 <td>                
                     <form action="/users/delete-users/{{_id}}?_method=DELETE" method="POST">
                         <input type="hidden" name="_method" value="DELETE">
@@ -47,7 +48,7 @@
                 <td>
                     <a class="btn btn-primary" href="/users/edit/{{_id}}">Editar</a>
                 </td>
-                
+                  {{/if}}
             </tr>
             {{/each}}
               
